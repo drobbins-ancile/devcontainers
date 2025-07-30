@@ -1,0 +1,54 @@
+{
+    "name": ".NET Dev Container",
+    "image": "mcr.microsoft.com/devcontainers/dotnet:1-8.0",
+    "features": {
+        "ghcr.io/devcontainers/features/aws-cli:1": {},
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+        "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {}
+    },
+    "mounts": [
+        "source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind",
+        "source=${localEnv:HOME}/.aws,target=/home/vscode/.aws,type=bind,consistency=cached",
+        "source=${localEnv:HOME}/.nuget,target=/home/vscode/.nuget,type=bind,consistency=cached"
+    ],
+    "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+    "postCreateCommand": "bash -i .devcontainer/postCreateCommand.sh",
+    "containerEnv": {
+        "CLAUDE_CODE_USE_BEDROCK": "1",
+        "ANTHROPIC_MODEL": "us.anthropic.claude-sonnet-4-20250514-v1:0",
+        "ANTHROPIC_SMALL_FAST_MODEL": "us.anthropic.claude-3-5-haiku-20241022-v1:0",
+        "AWS_PROFILE": "SDIGRELEASENOMFA", // Set your AWS profile name here or remove to use default profile
+        "AWS_SDIG_PROFILE": "SDIGTEST" // Set your AWS SDIG profile name here or remove to use default profile
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "GitHub.copilot",
+                "GitHub.vscode-pull-request-github",
+                "docker.docker",
+                "ms-dotnettools.csdevkit",
+                "ms-dotnettools.csharp",
+                "ms-dotnettools.vscodeintellicode-csharp",
+                "csharpier.csharpier-vscode"
+            ],
+            "settings": {
+                "files.trimTrailingWhitespace": true,
+                "editor.formatOnPaste": false,
+                "editor.formatOnSave": true,
+                "[markdown]": {
+                    "files.trimTrailingWhitespace": false
+                },
+                "terminal.integrated.defaultProfile.osx": "zsh",
+                "[csharp]": {
+                    "editor.formatOnSave": true,
+                    "editor.defaultFormatter": "csharpier.csharpier-vscode",
+                    "editor.codeActionsOnSave": {
+                        "source.organizeImports": "always",
+                        "source.fixAll": "always"
+                    }
+                }
+            }
+        }
+    }
+}
