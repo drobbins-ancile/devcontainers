@@ -33,7 +33,8 @@
 				"ms-python.pylint",
 				"amazonwebservices.aws-toolkit-vscode",
 				"docker.docker",
-				"charliermarsh.ruff"
+				"charliermarsh.ruff",
+				"meta.pyrefly"
 			],
 			"settings": {
 				"files.trimTrailingWhitespace": true,
