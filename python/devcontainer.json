@@ -13,14 +13,10 @@
 		"source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind",
 		"source=${localEnv:HOME}/.aws,target=/home/vscode/.aws,type=bind,consistency=cached"
 	],
+	"postCreateCommand": "grep -v '^::1' /etc/hosts > /tmp/hosts.tmp && cat /tmp/hosts.tmp > /etc/hosts && rm /tmp/hosts.tmp",
 	"postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder} && npm install -g @anthropic-ai/claude-code",
 	"containerEnv": {
-		"CLAUDE_CODE_USE_BEDROCK": "1",
-		"ANTHROPIC_DEFAULT_OPUS_MODEL": "global.anthropic.claude-opus-4-5-20251101-v1:0",
-		"ANTHROPIC_DEFAULT_SONNET_MODEL": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-		"ANTHROPIC_DEFAULT_HAIKU_MODEL": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
-		"CLAUDE_CODE_SUBAGENT_MODEL": "global.anthropic.claude-opus-4-5-20251101-v1:0",
-		"ANTHROPIC_MODEL": "global.anthropic.claude-opus-4-5-20251101-v1:0",
+		"ANTHROPIC_MODEL": "opus",
 		"AWS_PROFILE": "SDIGRELEASENOMFA" // Set your AWS profile name here
 	},
 	"customizations": {
