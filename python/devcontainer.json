@@ -14,7 +14,7 @@
 		"source=${localEnv:HOME}/.aws,target=/home/vscode/.aws,type=bind,consistency=cached"
 	],
 	"postCreateCommand": "grep -v '^::1' /etc/hosts > /tmp/hosts.tmp && cat /tmp/hosts.tmp > /etc/hosts && rm /tmp/hosts.tmp",
-	"postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder} && npm install -g @anthropic-ai/claude-code",
+	"postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder} && curl -fsSL https://claude.ai/install.sh | bash",
 	"containerEnv": {
 		"ANTHROPIC_MODEL": "opus",
 		"AWS_PROFILE": "SDIGRELEASENOMFA" // Set your AWS profile name here
