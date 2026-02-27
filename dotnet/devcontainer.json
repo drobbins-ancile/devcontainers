@@ -12,7 +12,7 @@
         "source=${localEnv:HOME}/.aws,target=/home/vscode/.aws,type=bind,consistency=cached",
         "source=${localEnv:HOME}/.nuget,target=/home/vscode/.nuget,type=bind,consistency=cached"
     ],
-    "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+    "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder} && curl -fsSL https://claude.ai/install.sh | bash",
     "postCreateCommand": "bash -i .devcontainer/postCreateCommand.sh",
     "containerEnv": {
 		"ANTHROPIC_MODEL": "opus",
