@@ -6,3 +6,4 @@ dotnet nuget add source "https://ancile-sdig-405085646316.d.codeartifact.us-east
 dotnet tool install -g dotnet-ef
 dotnet tool install -g csharpier
 sudo dotnet workload update
+grep -v '^::1' /etc/hosts > /tmp/hosts.tmp && cat /tmp/hosts.tmp > /etc/hosts && rm /tmp/hosts.tmp
